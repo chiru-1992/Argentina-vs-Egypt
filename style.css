@@ -1,299 +1,72 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-background:url("assets/bg.jpg") center center/cover no-repeat fixed;
-color:#fff;
-}
-
-.overlay{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-background:rgba(0,0,0,.75);
-padding:20px;
-text-align:center;
-}
+const SECRET_CODE = "TWO MAGICIAN";
 
-h1{
-font-size:48px;
-color:#fff;
-text-shadow:0 0 20px cyan;
-}
+function checkCode() {
 
-h2{
-margin:15px 0;
-color:gold;
-}
+    const input = document.getElementById("code").value.trim();
+    const message = document.getElementById("message");
 
-.info{
-font-size:22px;
-margin-top:20px;
-}
+    if (input.toUpperCase() !== SECRET_CODE) {
+        message.style.color = "#ff4444";
+        message.innerHTML = "❌ Wrong Secret Code";
+        return;
+    }
 
-.login{
-margin-top:30px;
-}
+    message.style.color = "#00ff99";
+    message.innerHTML = "✅ Access Granted";
 
-input{
-width:320px;
-padding:15px;
-border:none;
-border-radius:30px;
-font-size:18px;
-text-align:center;
-}
+    document.querySelector(".overlay").style.display = "none";
 
-button{
-margin-top:15px;
-padding:14px 45px;
-border:none;
-border-radius:30px;
-background:gold;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-transition:.3s;
-}
+    const ticketsDiv = document.getElementById("tickets");
+    ticketsDiv.style.display = "flex";
+    ticketsDiv.innerHTML = "";
 
-button:hover{
-transform:scale(1.05);
-}
+    tickets.forEach((ticket, index) => {
 
-#tickets{
-display:none;
-flex-direction:column;
-align-items:center;
-gap:25px;
-padding:30px;
-background:#07111d;
-}
+        ticketsDiv.innerHTML += `
 
-.ticket{
+        <div class="ticket">
 
-width:95%;
-max-width:900px;
+            <div class="ticket-header">
+                🎫 TICKET ${index + 1}
+            </div>
 
-background:rgba(255,255,255,.08);
+            <div class="players">
 
-backdrop-filter:blur(15px);
+                <div class="team argentina">
 
-border:3px solid gold;
+                    <h3>🇦🇷 ARGENTINA</h3>
 
-border-radius:20px;
+                    <img src="${ticket.argentina.photo}" alt="${ticket.argentina.name}">
 
-padding:20px;
+                    <h4>${ticket.argentina.name}</h4>
 
-box-shadow:0 10px 30px rgba(0,0,0,.5);
+                </div>
 
-animation:fade .8s;
+                <div class="vs">
+                    VS
+                </div>
 
-}
+                <div class="team egypt">
 
-.ticket-header{
+                    <h3>🇪🇬 EGYPT</h3>
 
-text-align:center;
+                    <img src="${ticket.egypt.photo}" alt="${ticket.egypt.name}">
 
-font-size:24px;
+                    <h4>${ticket.egypt.name}</h4>
 
-font-weight:bold;
+                </div>
 
-background:gold;
+            </div>
 
-color:#000;
+            <div class="creator">
+                CREATED BY<br>
+                ⭐ CHIRANJEEVI GURUNG ⭐
+            </div>
 
-padding:10px;
+        </div>
 
-border-radius:10px;
+        `;
 
-margin-bottom:20px;
-
-}
-
-.players{
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-}
-
-.team{
-
-width:38%;
-
-text-align:center;
-
-padding:15px;
-
-border-radius:15px;
-
-}
-
-.argentina{
-
-background:linear-gradient(180deg,#74c9ff,#ffffff,#74c9ff);
-
-color:#000;
-
-border:3px solid #00a2ff;
-
-}
-
-.egypt{
-
-background:linear-gradient(180deg,#e41d24,#ffffff,#000000);
-
-color:#000;
-
-border:3px solid #d40000;
-
-}
-
-.team h3{
-
-font-size:22px;
-
-margin-bottom:10px;
-
-}
-
-.team img{
-
-width:140px;
-
-height:140px;
-
-border-radius:50%;
-
-border:5px solid white;
-
-object-fit:cover;
-
-box-shadow:0 0 20px rgba(0,0,0,.4);
-
-}
-
-.team h4{
-
-margin-top:12px;
-
-font-size:22px;
-
-}
-
-.vs{
-
-width:90px;
-
-height:90px;
-
-background:crimson;
-
-border-radius:50%;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:32px;
-
-font-weight:bold;
-
-color:white;
-
-box-shadow:0 0 20px red;
-
-animation:pulse 1.5s infinite;
-
-}
-
-.creator{
-
-margin-top:20px;
-
-text-align:center;
-
-font-size:16px;
-
-letter-spacing:3px;
-
-color:gold;
-
-font-weight:bold;
-
-border-top:2px dashed rgba(255,255,255,.3);
-
-padding-top:12px;
-
-}
-
-@keyframes pulse{
-
-0%{transform:scale(1);}
-
-50%{transform:scale(1.1);}
-
-100%{transform:scale(1);}
-
-}
-
-@keyframes fade{
-
-from{
-opacity:0;
-transform:translateY(30px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-@media(max-width:768px){
-
-.players{
-
-flex-direction:column;
-
-gap:20px;
-
-}
-
-.team{
-
-width:100%;
-
-}
-
-.vs{
-
-width:70px;
-
-height:70px;
-
-font-size:24px;
-
-}
-
-.team img{
-
-width:120px;
-
-height:120px;
-
-}
+    });
 
 }
