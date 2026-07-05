@@ -1,31 +1,48 @@
 const SECRET_CODE = "TWO MAGICIAN";
 
 function checkCode() {
+
     const input = document.getElementById("code").value.trim();
+    const message = document.getElementById("message");
 
     if (input.toUpperCase() !== SECRET_CODE) {
-        alert("Wrong Code");
+        message.style.color = "#ff4444";
+        message.innerHTML = "❌ Wrong Secret Code";
         return;
     }
 
-    const ticketsDiv = document.getElementById("tickets");
-    document.querySelector(".overlay").style.display = "none";
-    ticketsDiv.innerHTML = "";
-    ticketsDiv.style.display = "block";
+    message.style.color = "#00ff99";
+    message.innerHTML = "✅ Access Granted";
 
-    for (let i = 0; i < tickets.length; i++) {
+    document.querySelector(".overlay").style.display = "none";
+
+    const ticketsDiv = document.getElementById("tickets");
+
+    ticketsDiv.innerHTML = "";
+    ticketsDiv.style.display = "flex";
+
+    tickets.forEach((ticket, index) => {
+
         ticketsDiv.innerHTML += `
         <div class="ticket">
-            <h2>Ticket ${i + 1}</h2>
 
-            <img src="${tickets[i].egypt.photo}" width="150">
-            <p>${tickets[i].egypt.name}</p>
+            <h3>🎫 Ticket ${index + 1}</h3>
 
-            <h3>VS</h3>
+            <div class="player">
+                <img src="${ticket.egypt.photo}" alt="${ticket.egypt.name}">
+                <h4>${ticket.egypt.name}</h4>
+            </div>
 
-            <img src="${tickets[i].argentina.photo}" width="150">
-            <p>${tickets[i].argentina.name}</p>
+            <div class="vs">VS</div>
+
+            <div class="player">
+                <img src="${ticket.argentina.photo}" alt="${ticket.argentina.name}">
+                <h4>${ticket.argentina.name}</h4>
+            </div>
+
         </div>
         `;
-    }
+
+    });
+
 }
