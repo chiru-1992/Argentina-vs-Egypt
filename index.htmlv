@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Argentina vs Egypt</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="overlay">
+
+<h1>🇦🇷 ARGENTINA</h1>
+
+<h2>VS</h2>
+
+<h1>🇪🇬 EGYPT</h1>
+
+<div class="info">
+
+<p>📅 Date : <b>7 July</b></p>
+
+<p>🕤 Time : <b>9:30 PM</b></p>
+
+</div>
+
+<div class="login">
+
+<input
+type="password"
+id="code"
+placeholder="Enter Secret Code">
+
+<button onclick="checkCode()">
+
+Reveal Tickets
+
+</button>
+
+<p id="message"></p>
+
+</div>
+
+</div>
+
+<div id="tickets"></div>
+
+<script src="players.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
