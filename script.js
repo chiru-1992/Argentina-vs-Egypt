@@ -1,59 +1,31 @@
 const SECRET_CODE = "TWO MAGICIAN";
 
 function checkCode() {
-
     const input = document.getElementById("code").value.trim();
-    const message = document.getElementById("message");
 
     if (input.toUpperCase() !== SECRET_CODE) {
-        message.style.color = "#ff4444";
-        message.innerHTML = "❌ Wrong Secret Code";
+        alert("Wrong Code");
         return;
     }
 
-    message.style.color = "#00ff99";
-    message.innerHTML = "✅ Access Granted";
-
-    document.querySelector(".overlay").style.display = "none";
-
     const ticketsDiv = document.getElementById("tickets");
+    document.querySelector(".overlay").style.display = "none";
+    ticketsDiv.innerHTML = "";
+    ticketsDiv.style.display = "block";
 
-    ticketsDiv.style.display = "flex";
-
-    tickets.forEach((ticket, index) => {
-
+    for (let i = 0; i < tickets.length; i++) {
         ticketsDiv.innerHTML += `
-
         <div class="ticket">
+            <h2>Ticket ${i + 1}</h2>
 
-            <h3>🎫 Ticket ${index + 1}</h3>
+            <img src="${tickets[i].egypt.photo}" width="150">
+            <p>${tickets[i].egypt.name}</p>
 
-            <div class="player">
+            <h3>VS</h3>
 
-                <img src="${ticket.egypt.photo}" alt="${ticket.egypt.name}">
-
-                <h4>${ticket.egypt.name}</h4>
-
-                <img class="jersey" src="${ticket.egypt.jersey}" alt="Egypt Jersey">
-
-            </div>
-
-            <div class="vs">VS</div>
-
-            <div class="player">
-
-                <img src="${ticket.argentina.photo}" alt="${ticket.argentina.name}">
-
-                <h4>${ticket.argentina.name}</h4>
-
-                <img class="jersey" src="${ticket.argentina.jersey}" alt="Argentina Jersey">
-
-            </div>
-
+            <img src="${tickets[i].argentina.photo}" width="150">
+            <p>${tickets[i].argentina.name}</p>
         </div>
-
         `;
-
-    });
-
+    }
 }
